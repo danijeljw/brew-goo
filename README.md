@@ -51,6 +51,8 @@ git checkout v1.0.0
 </details>
 
 
+#### Inspired by: [Bash-Snippets](https://github.com/alexanderepstein/Bash-Snippets)
+
 ## License
 
 MIT License
