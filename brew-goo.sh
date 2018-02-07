@@ -21,7 +21,7 @@
 #   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #   SOFTWARE.
 
-currentVersion="0.1.0"
+currentVersion="0.1.1"
 
 LIGHTBLUE='033[1;34m' # Light Blue text colour
 RED='\033[0;31m'      # Red text colour
