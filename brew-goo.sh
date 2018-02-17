@@ -21,7 +21,7 @@
 #   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #   SOFTWARE.
 
-currentVersion="0.1.1"
+currentVersion="0.1.2"
 
 LIGHTBLUE='033[1;34m' # Light Blue text colour
 RED='\033[0;31m'      # Red text colour
@@ -105,7 +105,7 @@ check_version () {
     if (( ${BASH_VERSION%%.*} >= 4 )); then
         return
     else
-        echo -e "Oh my! That’s a very old version of bash you’re using, we don’t support that anymore :(\n" \
+        echo -e "That’s a very old version of bash you’re using, we don’t support that anymore :(\n" \
         "\nConsider upgrading it or, if you must use bash ${BASH_VERSION} download an old version of" \
         "brew-goo from here: https://github.com/danijeljw/brew-goo/blob/------press-y-on-file-required"
         exit 0
