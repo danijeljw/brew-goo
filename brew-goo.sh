@@ -119,10 +119,6 @@ if [[ -n $1 ]]; then
         help
         ;;
 
-    '-l' | '--list' )
-        help list
-        ;;
-
     * )
         check_version
         parse_line "$*"
