@@ -23,22 +23,12 @@
 
 currentVersion="0.1.1"
 
-LIGHTBLUE='033[1;34m' # Light Blue text colour
-RED='\033[0;31m'      # Red text colour
-NC='\033[0m'          # No text colour
+LIGHTBLUE='\033[1;34m' # Light Blue text colour
+PURPLE="\033[0;35m"    # Purple text colour
+NC='\033[0m'           # No text colour
 
 
-comeondialog()
-{
-    if command -v dialog>/dev/null 2>&1; then
-        call_Dialog()
-    else
-        printf "Requires ${LIGHTBLUE}dialog${NC}, but it's not installed.\nPlease install via ${RED}'brew install dialog'${NC}"
-        return 0
-    fi
-}
-
-callDialog()
+call_Dialog()
 {
 : ${DIALOG=dialog}
 : ${DIALOG_OK=0}
@@ -79,3 +69,13 @@ case $retval in
     echo "Unexpected return code: $retval (ok would be $DIALOG_OK)";;
 esac
 }
+
+if [ command -v dialog > /dev/null 2>&1 ]; then
+    call_Dialog
+else
+    printf "Requires ${LIGHTBLUE}dialog${NC}, but it's not installed.\nPlease install via ${PURPLE}'brew install dialog'${NC}"
+fi
+
+
+
+
