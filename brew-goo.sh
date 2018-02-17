@@ -31,7 +31,7 @@ NC='\033[0m'          # No text colour
 comeondialog()
 {
     if command -v dialog>/dev/null 2>&1; then
-        call_Dialog()
+        call_Dialog
     else
         printf "Requires ${LIGHTBLUE}dialog${NC}, but it's not installed.\nPlease install via ${RED}'brew install dialog'${NC}"
         return 0
@@ -83,3 +83,54 @@ case $retval in
     echo "Unexpected return code: $retval (ok would be $DIALOG_OK)";;
 esac
 }
+
+
+# Function to print HELP menu
+help () {
+    cat <<EOF
+
+    USAGE: brew-goo [-h|--help] [-l|--list] TEXT
+EOF
+    if [[ 'list' == $1 ]]; then
+        echo 'Supported one line commands:'
+        for key in ${!emojis[@]}; do
+            echo -e "$key ${emojis[$key]}"
+        done
+    fi
+    exit 0
+}
+
+# Checks the installed bash version to see if it's compatible with emojify
+check_version () {
+    if (( ${BASH_VERSION%%.*} >= 4 )); then
+        return
+    else
+        echo -e "Oh my! That’s a very old version of bash you’re using, we don’t support that anymore :(\n" \
+        "\nConsider upgrading it or, if you must use bash ${BASH_VERSION} download an old version of" \
+        "brew-goo from here: https://github.com/danijeljw/brew-goo/blob/------press-y-on-file-required"
+        exit 0
+    fi
+}
+
+# If arguments are provided on the command line then check for supported help
+if [[ -n $1 ]]; then
+    case $1 in
+    '-h' | '--help' )
+        help
+        ;;
+
+    '-l' | '--list' )
+        help list
+        ;;
+
+    * )
+        check_version
+        parse_line "$*"
+        ;;
+    esac
+else
+    check_version
+    while IFS=''; read -r line || [ -n "$line" ]; do
+        parse_line "$line"
+    done
+fi
